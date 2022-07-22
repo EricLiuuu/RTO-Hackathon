@@ -6,6 +6,7 @@ const saltRounds = 10;
 
 module.exports = {
     createUser,
+    getUserById,
     getUserByUsername,
     checkUser,
     updateUser
@@ -29,7 +30,7 @@ function checkPassword(password){
 }
 
 async function createUser(username, password, address, email, phone, receiveNotice, ...theArgs){
-    if(!username|| !password|| !address|| !email|| !phone) throw "Error: Input Incomplete"
+    if(!username|| !password|| !address|| !email|| !phone|| !receiveNotice) throw "Error: Input Incomplete"
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
     username = checkUsername(username);
     password = checkPassword(password);
