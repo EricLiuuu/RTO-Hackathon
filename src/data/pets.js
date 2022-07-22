@@ -5,7 +5,8 @@ const usersJs = require('./users');
 
 module.exports = {
     createPet,
-    getPetById
+    getPetById,
+    getAllPets
 };
 
 function throwErrorString(str){
@@ -15,6 +16,7 @@ function throwErrorString(str){
     return str;
 }
 
+//Input those information to create a pet. You must put username, petname, species. Others are not required, you can choose not input them.
 async function createPet(username,petname,species,img,age,sex,breed,color,hair,discription,lostDate,lostLocation,...theArgs){
     if(!username|| !petname || !species) throw "You should input username, pet name and species";
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
@@ -51,6 +53,7 @@ async function createPet(username,petname,species,img,age,sex,breed,color,hair,d
     return result;
 }
 
+//Input a petId and return all the information about this pet
 async function getPetById(petId,...theArgs){
     if(!petId) throw new Error("Should input petId.");
     if(theArgs.length>0) throw new Error("This function has only 1 input.");
@@ -73,4 +76,20 @@ async function getPetById(petId,...theArgs){
     }
     result._id =result._id.toString();
     return result;
+}
+
+//Input username and return all the pet the user owns.
+async function getAllPets(username,...theArgs){
+    if(!username) throw new Error("Should input username.");
+    if(theArgs.length>0) throw new Error("This function has only 1 input.");
+
+    const usersCollection = await users();
+    const findUser = await usersCollection.findOne({username:{ $regex: username, $options: '$i' }});
+    if (findUser === null) throw "No user with that username.";
+
+    for(let i=0;i<findUser.pets.length;i++){
+        findUser.pets[i]._id=findUser.pets[i]._id.toString();
+    }
+
+    return findUser.pets;
 }

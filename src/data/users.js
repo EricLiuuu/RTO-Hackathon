@@ -31,6 +31,7 @@ function checkPassword(password){
     return password;
 }
 
+//You should input all the variable to create a user
 async function createUser(username, password, address, email, phone, receiveNotice, ...theArgs){
     if(!username|| !password|| !address|| !email|| !phone|| !receiveNotice) throw "Error: Input Incomplete"
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
@@ -60,6 +61,7 @@ async function createUser(username, password, address, email, phone, receiveNoti
     if(user) return user;
 }
 
+//input an id to return all the information about this user
 async function getUserById(id,...theArgs){
     if(!id) throw "You must provide an id to search for";
     if(theArgs.length>0) throw "This function has only 1 input";
@@ -78,6 +80,7 @@ async function getUserById(id,...theArgs){
     return findUser;
 };
 
+//input the name to get the information from this user
 async function getUserByUsername(username,...theArgs){
     if(!username) throw "You must provide an id to search for";
     if(theArgs.length>0) throw "This function has only 1 input";
@@ -89,7 +92,7 @@ async function getUserByUsername(username,...theArgs){
     return findUser;
 };
 
-
+//Authenticated user login, check the password
 async function checkUser(username, password,...theArgs){
     if(!username||!password) throw "Error: You should input both username and password";
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
@@ -115,6 +118,7 @@ async function checkUser(username, password,...theArgs){
     }
 }
 
+//Unfortunately you should input all the variable to update username, password, address, email, phone, receiveNotice. Even if you just want to change 1 variable.
 async function updateUser (username, password, address, email, phone, receiveNotice, ...theArgs) {
     if(!username|| !password|| !address|| !email|| !phone) throw "Error: Input Incomplete";
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
@@ -146,6 +150,7 @@ async function updateUser (username, password, address, email, phone, receiveNot
     return result;
 }
 
+//Input the username and qrCode to change the qrcode
 async function updateUserQR(username,qrCode,...theArgs){
     if(!username||!qrCode) throw "Error: Should input both username and QRcode";
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
@@ -180,6 +185,7 @@ async function updateUserQR(username,qrCode,...theArgs){
     return result;
 }
 
+//Input nothing and return all users in database
 async function getAllUsers(...theArgs){
     if(theArgs.length>0) throw "This function has no input.";
 
@@ -193,6 +199,7 @@ async function getAllUsers(...theArgs){
     return usersAll;
 };
 
+// Oh this function is fail, just, ignore it
 // async function findVolunteer (location, distance,...theArgs) {
 //     if(!location||!distance) throw "Error: You should input both location and distance";
 //     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";

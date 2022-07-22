@@ -10,6 +10,8 @@ const main = async () => {
 
 //create the a user catperson
     const catperson = await users.createUser("catperson","123123",[-94.1743, 36.3507], "catperson@gmail.com","1234567890","true");
+
+//Authenticated user login, check the password
     const checkCatperson = await users.checkUser("catperson","123123");
     console.log("checkCatperson:",checkCatperson,"\n");
 
@@ -25,6 +27,10 @@ const main = async () => {
     const shokora = await pets.createPet("catperson","shokora","cat","noImg","kitten","female","tabby cat","black","short hair","Lovely kitten, like play","07/22/2022","(36.350798, -94.174383)")
     const banira = await pets.createPet("catperson","banira","cat","noImg","kitten","female","white cat","white","long hair","Shy, but sweet and kind")
 
+//get catperson all pets
+    const allcatpersonPets = await pets.getAllPets("catperson");
+    console.log("allcatpersonPets:\n",allcatpersonPets,"\n");
+
 //create the 4 volunteers
     const volunteer00 = await users.createUser("volunteer00","123123",[-94.1743, 36.3507], "volunteer00@gmail.com","1234567800","true");
     const volunteer01 = await users.createUser("volunteer01","123123",[-94.1744, 36.3508], "volunteer01@gmail.com","1234567801","true");
@@ -37,7 +43,7 @@ const main = async () => {
 
 //Get all users
     const allUsers = await users.getAllUsers();
-    console.log("allUsers:\n",allUsers);
+    //console.log("allUsers:\n",allUsers);
 
     console.log('Done seeding database');
     dbConnection.closeConnection();
