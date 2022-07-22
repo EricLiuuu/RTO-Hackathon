@@ -25,7 +25,8 @@ function checkPassword(password){
     return password;
 }
 
-async function create(userId, username, password, address, email, phone, receiveNotice,qrCode, ...theArgs){
+async function createUser(username, password, address, email, phone, ...theArgs){
+    if(!username|| !password|| !address|| !email|| !phone) throw "Error: Input Incomplete"
     username = checkUsername(username);
     password = checkPassword(password);
 
@@ -42,7 +43,8 @@ async function create(userId, username, password, address, email, phone, receive
         email:email,
         phone:phone,
         receiveNotice:false,
-        qrCode:undefined
+        qrCode:undefined,
+        pets:[]
     };
     const insertInfo = await usersCollection.insertOne(newUsers);
     if(insertInfo.insertedCount === 0) throw "Error: Could not add users";
