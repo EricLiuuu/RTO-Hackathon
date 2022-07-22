@@ -9,7 +9,9 @@ module.exports = {
     getUserById,
     getUserByUsername,
     checkUser,
-    updateUser
+    updateUser,
+    updateUserQR,
+    getAllUsers
 };
 
 function checkUsername(username){
@@ -43,7 +45,7 @@ async function createUser(username, password, address, email, phone, receiveNoti
     let newUsers = {
         username:username,
         password:hash,
-        address:address,
+        address: address,
         email:email,
         phone:phone,
         receiveNotice:receiveNotice,
@@ -55,7 +57,7 @@ async function createUser(username, password, address, email, phone, receiveNoti
 
     const newId = insertInfo.insertedId;
     const user = await getUserById(newId);
-    if(user) return {userInserted: true};
+    if(user) return user;
 }
 
 async function getUserById(id,...theArgs){
@@ -119,7 +121,6 @@ async function updateUser (username, password, address, email, phone, receiveNot
     username = checkUsername(username);
     password = checkPassword(password);
     
-
     const usersCollection = await users();
     const findUser = await usersCollection.findOne({username:{ $regex: username, $options: '$i' }});
     if (findUser === null) throw "No user with that username.";
@@ -144,3 +145,66 @@ async function updateUser (username, password, address, email, phone, receiveNot
     let result = await getUserByUsername(username);
     return result;
 }
+
+async function updateUserQR(username,qrCode,...theArgs){
+    if(!username||!qrCode) throw "Error: Should input both username and QRcode";
+    if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
+
+    const usersCollection = await users();
+    const findUser = await usersCollection.findOne({username:{ $regex: username, $options: '$i' }});
+    if (findUser === null) throw "No user with that username.";
+
+    const password=findUser.password;
+    const address=findUser.address;
+    const email=findUser.email;
+    const phone=findUser.phone;
+    const receiveNotice=findUser.receiveNotice;
+    const pets=findUser.pets;
+
+    let updateUsers = {
+        password:password,
+        address:address,
+        email:email,
+        phone:phone,
+        receiveNotice:receiveNotice,
+        qrCode:qrCode,
+        pets:pets
+    };
+
+    const updateInfo = await usersCollection.updateOne({username:{ $regex: username, $options: '$i' }}, { $set: updateUsers});
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+        throw new Error("Could not update QRcode successfully.");
+    }
+
+    let result = await getUserByUsername(username);
+    return result;
+}
+
+async function getAllUsers(...theArgs){
+    if(theArgs.length>0) throw "This function has no input.";
+
+    const usersCollection = await users();
+    const usersAll = await usersCollection.find({}).toArray();
+
+    for(let i=0; i<usersAll.length; i++){
+        usersAll[i]._id=usersAll[i]._id.toString();
+    }
+
+    return usersAll;
+};
+
+// async function findVolunteer (location, distance,...theArgs) {
+//     if(!location||!distance) throw "Error: You should input both location and distance";
+//     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
+
+//     const usersCollection = await users();
+//     //const volunteersArr = await usersCollection.find({address:{ $nearSphere : location, $maxDistance: distance }}).toArray();
+//     const volunteersArr = await usersCollection.find({address:{ 
+//         $near: {
+//             $geometry: location,
+//             $maxDistance: distance
+//      }}}).toArray();
+//     if(volunteersArr.length === 0) throw "Error: No volunteers near by";
+
+//     return volunteersArr;
+// }

@@ -15,7 +15,7 @@ function throwErrorString(str){
     return str;
 }
 
-async function createPet(username,petname,species,img,age,sex,breed,color,hair,discription,...theArgs){
+async function createPet(username,petname,species,img,age,sex,breed,color,hair,discription,lostDate,lostLocation,...theArgs){
     if(!username|| !petname || !species) throw "You should input username, pet name and species";
     if(theArgs.length>0) throw "Number of inputs are exceed upper limit";
 
@@ -26,7 +26,6 @@ async function createPet(username,petname,species,img,age,sex,breed,color,hair,d
     let newPetId = new ObjectId()
     let newPet = {
         _id: newPetId,
-        username:username,
         petname:petname,
         species:species,
         img:img,
@@ -36,7 +35,8 @@ async function createPet(username,petname,species,img,age,sex,breed,color,hair,d
         color:color,
         hair:hair,
         discription:discription,
-        lostDate:undefined
+        lostDate:lostDate,
+        lostLocation:lostLocation
     }
 
     findUser.pets.push(newPet);
@@ -60,6 +60,7 @@ async function getPetById(petId,...theArgs){
     
     const usersCollection = await users();
     const userArr = await usersCollection.find({'pets._id': petId}).toArray();
+
     if(userArr.length === 0) throw new Error("No user with that id.");
     const getUser=userArr[0];
 
