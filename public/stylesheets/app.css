@@ -1,0 +1,17 @@
+#cluster-map {
+    width: 100%;
+    height: 500px;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+}
+
+.card-img-top{
+    background-color: $indigo-900;
+}
+.howitwork-card{
+  width: 18rem;
+  background-color: #ffc107;
+}
