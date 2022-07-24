@@ -1,0 +1,131 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+  <h1 class="text-center mb-3">Edit Pet</h1>
+  <div class="col-md-6 offset-md-3">
+    <form action="/pets/<%=pet._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+      <div class="row">
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="title">Pet Name</label>
+        <input class="form-control" type="text" id="petname" name="pet[petname]" value="<%=pet.petname %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="species">Species</label>
+        <input class="form-control" type="text" id="species" name="pet[species]" value="<%=pet.species %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="age">Age</label>
+        <input class="form-control" type="text" id="age" name="pet[age]" value="<%=pet.age %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input class="form-control" type="text" id="age" name="pet[phone]" value="<%=pet.phone %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+</div>
+
+<div class="row">
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="gender">Gender</label>
+        <select class="form-select mb-3" aria-label="Default select example" id="gender" name="pet[gender]" value="<%=pet.gender %>" required>
+          <option selected>Select pet gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="breed">Breed</label>
+        <input class="form-control" type="text" id="breed" name="pet[breed]" value="<%=pet.breed %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="color">Color</label>
+        <input class="form-control" type="text" id="color" name="pet[color]" value="<%=pet.color %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="hair">Hair</label>
+        <input class="form-control" type="text" id="hair" name="pet[hair]" value="<%=pet.hair %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+</div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input class="form-control" type="text" id="location" name="pet[location]" value="<%=pet.location %>" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" type="text" id="description" name="pet[description]" required><%= pet.description%></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+
+
+      <div class="mb-3">
+        <div class="form-file custom-file">
+          <input type="file" class="form-file-input" id="image" name="image" multiple>
+          <label class="form-file-label" for="image">
+            <span class="form-file-text custom-file-label">Add more image(s)...</span>
+            <span class="form-file-button">Browse</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <% pet.images.forEach(function(img, i) {  %>
+
+        <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
+        <div class="form-check-inline">
+          <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+        </div>
+        <label for="image-<%=i%>">Delete?</label>
+        <% })%>
+      </div>
+
+      <div class="row">
+
+              <div class="mb-3 col-md-7">
+                <label class="form-label" for="status">Status</label>
+                <select class="form-select mb-3" aria-label="Default select example" id="status" name="pet[status]" value="<%=pet.status %>" required>
+                  <option selected>Select pet status</option>
+                  <option value="safe">Safe</option>
+                  <option value="lost">Lost</option>
+                </select>
+              </div>
+
+      <div class="mt-2 mb-0 col-md-5">
+        <button class="btn btn-info col-12 updatebutton">Update Pet</button>
+      </div>
+      </div>
+    </form>
+    <a href="/pets/<%= pet._id%>">Back To Pet</a>
+
+  </div>
+</div>
