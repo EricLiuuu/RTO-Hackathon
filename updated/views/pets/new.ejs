@@ -1,0 +1,116 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+  <h1 class="text-center mb-3">Generate QR code</h1>
+  <div class="col-md-6 offset-md-3">
+    <form action="/pets" method="POST" novalidate class="validated-form row g-3" enctype="multipart/form-data">
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="petname">Pet name</label>
+        <input class="form-control" type="text" id="petname" name="pet[petname]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="species">Species</label>
+        <input class="form-control" type="text" id="species" name="pet[species]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="age">Age</label>
+        <input class="form-control" type="text" id="age" name="pet[age]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input class="form-control" type="text" id="age" name="pet[phone]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="gender">Gender</label>
+    <select class="form-select mb-3" aria-label="Default select example" id="gender" name="pet[gender]">
+      <option selected>Select pet gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="breed">Breed</label>
+        <input class="form-control" type="text" id="breed" name="pet[breed]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="color">Color</label>
+        <input class="form-control" type="text" id="color" name="pet[color]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label" for="hair">Hair</label>
+        <input class="form-control" type="text" id="hair" name="pet[hair]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input class="form-control" type="text" id="location" name="pet[location]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" type="text" id="description" name="pet[description]" required></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <!-- <div class="mb-3">
+                <label class="form-label" for="lostDate">Lost Date</label>
+                <input class="form-control" type="text" id="lostDate" name="pet[lostDate]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lostLocation">Lost Location</label>
+                <input class="form-control" type="text" id="lostLocation" name="pet[lostLocation]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div> -->
+
+      <div class="mb-3">
+        <div class="form-file custom-file">
+          <input type="file" class="form-file-input" id="image" name="image" multiple>
+          <label class="form-file-label" for="image">
+            <span class="form-file-text custom-file-label">Choose image(s)...</span>
+            <span class="form-file-button">Browse</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-3">
+            <label class="form-label" for="status">Status</label>
+        <select class="form-select mb-3" aria-label="Default select example"  id="status" name="pet[status]" >
+          <option selected>Select pet status</option>
+          <option value="safe">Safe</option>
+          <option value="lost">Lost</option>
+        </select>
+</div>
+          <div class="mb-3">
+            <button class="btn btn-warning mb-3">Generate QR Code</button>
+          </div>
+    </form>
+
+  </div>
+</div>
