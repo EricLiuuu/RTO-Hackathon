@@ -26,7 +26,7 @@
       </div>
       <div class="mb-3 col-md-3">
         <label class="form-label" for="gender">Gender</label>
-    <select class="form-select mb-3" aria-label="Default select example">
+    <select class="form-select mb-3" aria-label="Default select example" id="gender" name="pet[gender]">
       <option selected>Select pet gender</option>
       <option value="male">Male</option>
       <option value="female">Female</option>
@@ -49,6 +49,13 @@
       <div class="mb-3 col-md-3">
         <label class="form-label" for="hair">Hair</label>
         <input class="form-control" type="text" id="hair" name="pet[hair]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input class="form-control" type="text" id="location" name="pet[location]" required>
         <div class="valid-feedback">
           Looks good!
         </div>
@@ -87,7 +94,7 @@
       </div>
       <div class="mb-3">
             <label class="form-label" for="status">Status</label>
-        <select class="form-select mb-3" aria-label="Default select example">
+        <select class="form-select mb-3" aria-label="Default select example"  id="status" name="pet[status]" >
           <option selected>Select pet status</option>
           <option value="safe">Safe</option>
           <option value="lost">Lost</option>

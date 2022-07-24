@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+      <div class="container pb-5">
+        <form action="/pets/sucess" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+          <div class="card success-card shadow">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732223.png" class="card-img-top" style="padding:15% 15%;" alt="QR code">
+            <div class="card-body" style="background-color: white">
+              <p>We have successfully added your pet to our database! </p>
+              <p>Print the QR code above and attach it to your pet tag.</p>
+              <p>Don't forget to select the notification option and join our community now.</p>
+              <div class="card-body col-12 mx-auto">
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="notify">
+                  <label class="form-check-label" for="notify">
+                    Notify neighbours when your pet get lost.
+                  </label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="receive">
+                  <label class="form-check-label" for="receive">
+                    Receive notification of similar pets near you.
+                  </label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="receiveall">
+                  <label class="form-check-label" for="receiveall">
+                    Join our mutual aid community and receive all notification of pets near you.
+                  </label>
+                </div>
+
+                <div class="mb-3">
+                  <button class="btn btn-warning col-12">Join community</button>
+                </div>
+                <a href="/pets/mypets/<%=currentUser._id%>" class="btn btn-warning col-12">Manage my pet</a>
+
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
